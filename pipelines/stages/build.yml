@@ -4,7 +4,15 @@ steps:
     displayName: 'Run Azure RM TTK Tests'
     inputs:
       templatelocation: '$(System.DefaultWorkingDirectory)\src\arm-templates'
+      resultLocation: '$(Build.Repository.LocalPath)'
       cliOutputResults: true
+  - task: PublishTestResults@2
+    displayName: 'Publish - ARM Validation results'
+    inputs:
+      testResultsFormat: 'NUnit'
+      failTaskOnFailedTests: true
+      testResultsFiles: '$(Build.Repository.LocalPath)\*armttk.xml'
+    condition: 'always()'
 
   #Create Artifact
   - task: CopyFiles@2
