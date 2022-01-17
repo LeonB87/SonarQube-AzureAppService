@@ -19,7 +19,7 @@ stages:
         strategy:
           parallel: 1
         pool:
-          vmImage: "linux-latest"
+          vmImage: "ubuntu-latest"
           demands: azureps
         continueOnError: false
         steps:
@@ -33,7 +33,7 @@ stages:
         #condition: and(ne(variables['Build.Reason'], 'PullRequest'), or(eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/main')))
         displayName: Deploy solution to development
         pool:
-          vmImage: "linux-latest"
+          vmImage: "ubuntu-latest"
           demands: azureps
         environment: "WDS Development"
         strategy:
