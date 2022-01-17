@@ -27,7 +27,6 @@ stages:
   - stage: ReleaseDev
     displayName: Release to Development
     variables:
-      - group: "pipeline - deploy to development"
       - template: variables/variables-dev.yml
     jobs:
       - deployment: ManagementDeployDev
