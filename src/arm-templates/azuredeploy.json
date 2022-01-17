@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "hostingPlanName": {
@@ -9,7 +9,7 @@
         },
         "siteLocation": {
             "type": "string",
-            "defaultValue": "North Central US"
+            "defaultValue": "North Europe"
         },
         "siteName": {
             "type": "string",
@@ -34,7 +34,7 @@
             "type": "string"
         },
         "repoUrl": {
-            "defaultValue": "https://github.com/vanderby/SonarQube-AzureAppService",
+            "defaultValue": "https://github.com/LeonB87/SonarQube-AzureAppService",
             "type": "string"
         },
         "branch": {
@@ -60,7 +60,6 @@
         }
     },
     "variables": {
-        "deploymentTelemetryKey": "e15aa4db-a1cc-4622-844f-e7dd01596983"
     },
     "resources": [
         {
@@ -111,7 +110,6 @@
                         "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
                     ],
                     "properties": {
-                        "Deployment_Telemetry_Instrumentation_Key": "[variables('deploymentTelemetryKey')]",
                         "SonarQubeEdition": "[parameters('SonarQube Edition')]",
                         "SonarQubeVersion": "[parameters('SonarQube Version')]"
                     }

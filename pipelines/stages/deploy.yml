@@ -1,0 +1,34 @@
+steps:
+  - task: DownloadBuildArtifacts@0
+    displayName: "Download - Pipeline artifacts"
+    inputs:
+      buildType: "current"
+      artifactName: "drop"
+      downloadType: "single"
+      downloadPath: "$(Pipeline.Workspace)"
+  - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+    displayName: "Tokenize - AAA Variables and Connections"
+    inputs:
+      rootDirectory: "$(Pipeline.Workspace)/drop"
+      targetFiles: |
+        **/*.json
+      encoding: 'auto'
+      writeBOM: true
+      escapeType: "none"
+      actionOnMissing: "fail"
+      keepToken: false
+      tokenPrefix: "#(|"
+      tokenSuffix: "|)#"
+  - task: AzurePowerShell@5
+    displayName: "Check templatespec resource group"
+    inputs:
+      azureSubscription: "$(ServiceConnection)"
+      ScriptType: 'InlineScript'
+      Inline: |
+        if (!(Get-AzResourceGroup "$(resourcegroupName)" -ErrorAction SilentlyContinue)){
+            New-AzResourceGroup -Name "$(resourcegroupName)" -Location "$(location)" -tag @{Environment="Management"}
+        }else{
+            Write-Output "The resource group already exists"
+        }
+      azurePowerShellVersion: 'LatestVersion'
+      pwsh: true

@@ -1,0 +1,44 @@
+name: $(versionnumber)
+
+trigger:
+  paths:
+    exclude:
+      - pipelines
+
+variables:
+  - group: "Global - SonarQube"
+
+stages:
+  - stage: Build
+    displayName: Build
+    variables:
+      - template: variables/variables-build.yml
+    jobs:
+      - job:
+        displayName: Build and Publish
+        strategy:
+          parallel: 1
+        pool:
+          vmImage: "linux-latest"
+          demands: azureps
+        continueOnError: false
+        steps:
+          - template: stages/build.yml
+  - stage: ReleaseDev
+    displayName: Release to Development
+    variables:
+      - group: "pipeline - deploy to development"
+      - template: variables/variables-dev.yml
+    jobs:
+      - deployment: ManagementDeployDev
+        #condition: and(ne(variables['Build.Reason'], 'PullRequest'), or(eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/main')))
+        displayName: Deploy solution to development
+        pool:
+          vmImage: "linux-latest"
+          demands: azureps
+        environment: "WDS Development"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: stages/deploy.yml
