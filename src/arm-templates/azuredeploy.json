@@ -8,8 +8,7 @@
             "defaultValue": "SonarQubeAppServicePlan"
         },
         "location": {
-            "type": "string",
-            "defaultValue": "North Europe"
+            "type": "string"
         },
         "siteName": {
             "type": "string",
