@@ -39,7 +39,7 @@
             "value": "#(|sqlServerName|)#"
         },
         "sqlAdministratorLoginPassword": {
-            "value": "replaced"
+            "value": "#(|sqlAdministratorLoginPassword|)#"
         }
     }
 }
