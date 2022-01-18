@@ -5,8 +5,8 @@
         "hostingPlanName": {
             "value": "SonarQubeAppServicePlan"
         },
-        "siteLocation": {
-            "value": "North Europe"
+        "location": {
+            "value": "#(|location|)#"
         },
         "siteName": {
             "value": "SonarQubeAppService"
@@ -25,6 +25,18 @@
         },
         "SonarQube Version": {
             "value": "Latest"
+        },
+        "taggingEnvironment": {
+            "value": "#(|taggingEnvironment|)"
+        },
+        "databaseName": {
+            "value": "#(|databaseName|)"
+        },
+        "sqlAdministratorLogin": {
+            "value": "#(|sqlAdministratorLogin|)"
+        },
+        "sqlServerName": {
+            "value": "#(|sqlServerName|)"
         }
     }
 }

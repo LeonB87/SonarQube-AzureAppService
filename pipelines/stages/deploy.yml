@@ -20,7 +20,7 @@ steps:
       tokenPrefix: "#(|"
       tokenSuffix: "|)#"
   - task: AzurePowerShell@5
-    displayName: "Check templatespec resource group"
+    displayName: "Check Resource group"
     inputs:
       azureSubscription: "$(ServiceConnection)"
       ScriptType: 'InlineScript'
