@@ -104,7 +104,7 @@
                     ],
                     "properties": {
                         "edition": "Basic",
-                        "collation": "SQL_Latin1_General_CP1_CI_AS",
+                        "collation": "SQL_Latin1_General_CP1_CS_AS",
                         "maxSizeBytes": "1073741824",
                         "requestedServiceObjectiveName": "Basic"
                     }
@@ -142,7 +142,9 @@
             "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
+                "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "[resourceId('Microsoft.Sql/servers', parameters('sqlserverName'))]",
+                "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), parameters('databaseName'))]"
             ],
             "properties": {
                 "name": "[parameters('siteName')]",
@@ -173,7 +175,10 @@
                     ],
                     "properties": {
                         "SonarQubeEdition": "[parameters('SonarQube Edition')]",
-                        "SonarQubeVersion": "[parameters('SonarQube Version')]"
+                        "SonarQubeVersion": "[parameters('SonarQube Version')]",
+                        "sonar.jdbc.url": "[concat('jdbc:sqlserver://', reference(resourceId('Microsoft.Sql/servers', parameters('sqlserverName')), '2020-08-01-preview').fullyQualifiedDomainName, ':1433;database=', parameters('databaseName'), ';encrypt=true')]",
+                        "sonar.jdbc.username": "[parameters('sqlAdministratorLogin')]",
+                        "sonar.jdbc.password": "[parameters('sqlAdministratorLoginPassword')]"
                     }
                 },
                 {
