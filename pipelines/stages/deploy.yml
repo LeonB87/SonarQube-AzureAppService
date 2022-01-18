@@ -33,13 +33,13 @@ steps:
       azurePowerShellVersion: 'LatestVersion'
       pwsh: true
   - task: AzureResourceManagerTemplateDeployment@3
-    displayName: 'Deploy resourcea'
+    displayName: 'Deploy resources'
     inputs:
       deploymentScope: 'Resource Group'
       ConnectedServiceName: "$(ServiceConnection)"
       subscriptionName: 'df2d437a-4249-4e47-9ec2-9440d8149525'
       action: 'Create Or Update Resource Group'
-      resourceGroupName: '$(resourcegroup)'
+      resourceGroupName: '$(resourcegroupName)'
       location: '$(location)'
       templateLocation: 'Linked artifact'
       csmFile: '$(Pipeline.Workspace)\drop\arm\azuredeploy.json'

@@ -127,6 +127,9 @@
         {
             "apiVersion": "2021-02-01",
             "name": "[parameters('hostingPlanName')]",
+            "tags": {
+                "Environment": "[parameters('taggingEnvironment')]"
+            },
             "type": "Microsoft.Web/serverfarms",
             "location": "[parameters('location')]",
             "sku": {
@@ -139,6 +142,9 @@
         {
             "apiVersion": "2021-02-01",
             "name": "[parameters('siteName')]",
+            "tags": {
+                "Environment": "[parameters('taggingEnvironment')]"
+            },
             "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
             "dependsOn": [
