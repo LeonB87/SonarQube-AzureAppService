@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "hostingPlanName": {
+            "value": "SonarQubeAppServicePlan"
+        },
+        "siteLocation": {
+            "value": "North Europe"
+        },
+        "siteName": {
+            "value": "SonarQubeAppService"
+        },
+        "skuName": {
+            "value": "B1"
+        },
+        "repoUrl": {
+            "value": "https://github.com/LeonB87/SonarQube-AzureAppService"
+        },
+        "branch": {
+            "value": "master"
+        },
+        "SonarQube Edition": {
+            "value": "Community"
+        },
+        "SonarQube Version": {
+            "value": "Latest"
+        }
+    }
+}
