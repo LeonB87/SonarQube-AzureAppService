@@ -3,40 +3,43 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "hostingPlanName": {
-            "value": "SonarQubeAppServicePlan"
+            "value": "#(|SonarQubeAppServicePlan|)#"
         },
         "location": {
             "value": "#(|location|)#"
         },
         "siteName": {
-            "value": "SonarQubeAppService"
+            "value": "#(|sonarqubeSiteName|)#"
         },
         "skuName": {
-            "value": "B1"
+            "value": "#(|appserviceSkuName|)#"
         },
         "repoUrl": {
             "value": "https://github.com/LeonB87/SonarQube-AzureAppService"
         },
         "branch": {
-            "value": "master"
+            "value": "#(|deploymentBranch|)#"
         },
         "SonarQube Edition": {
-            "value": "Community"
+            "value": "#(|sonarqubeEdition|)#"
         },
         "SonarQube Version": {
-            "value": "Latest"
+            "value": "#(|sonarqubeVersion|)#"
         },
         "taggingEnvironment": {
-            "value": "#(|taggingEnvironment|)"
+            "value": "#(|taggingEnvironment|)#"
         },
         "databaseName": {
-            "value": "#(|databaseName|)"
+            "value": "#(|databaseName|)#"
         },
         "sqlAdministratorLogin": {
-            "value": "#(|sqlAdministratorLogin|)"
+            "value": "#(|sqlAdministratorLogin|)#"
         },
         "sqlServerName": {
-            "value": "#(|sqlServerName|)"
+            "value": "#(|sqlServerName|)#"
+        },
+        "sqlAdministratorLoginPassword": {
+            "value": "replaced"
         }
     }
 }
