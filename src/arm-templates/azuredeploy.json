@@ -182,7 +182,7 @@
                     "properties": {
                         "SonarQubeEdition": "[parameters('SonarQube Edition')]",
                         "SonarQubeVersion": "[parameters('SonarQube Version')]",
-                        "sonar.jdbc.url": "[uriComponentToString(concat('jdbc:sqlserver://', reference(resourceId('Microsoft.Sql/servers', parameters('sqlserverName')), '2020-08-01-preview').fullyQualifiedDomainName, ':1433;database=', parameters('databaseName'), ';encrypt=true'))]",
+                        "sonar.jdbc.uri": "[uri(concat('jdbc:sqlserver://', parameters('sqlServerName'), '/'), concat(environment().suffixes.sqlServerHostname ,';1433;database=', parameters('databaseName'), ';encrypt=true') )]",
                         "sonar.jdbc.username": "[parameters('sqlAdministratorLogin')]",
                         "sonar.jdbc.password": "[parameters('sqlAdministratorLoginPassword')]"
                     }
