@@ -28,18 +28,18 @@ steps:
       PathtoPublish: "$(Build.ArtifactStagingDirectory)"
       ArtifactName: "drop"
       publishLocation: "Container"
-  - task: versioncounter@1
-    displayName: "Update - Version number (develop)"
-    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-    inputs:
-      VersionVariable: "versionnumber"
-      UpdateMinorVersion: false
-      DevOpsPat: "$(devops-pipeline-pat)"
-  - task: versioncounter@1
-    displayName: "Update - Version number (Pull Request)"
-    condition: and(succeeded(), and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/master')))
-    inputs:
-      VersionVariable: "versionnumber"
-      UpdateMinorVersion: false
-      OnlyUpdateMinor: true
-      DevOpsPat: "$(devops-pipeline-pat)"
+#   - task: versioncounter@1
+#     displayName: "Update - Version number (develop)"
+#     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+#     inputs:
+#       VersionVariable: "versionnumber"
+#       UpdateMinorVersion: false
+#       DevOpsPat: "$(devops-pipeline-pat)"
+#   - task: versioncounter@1
+#     displayName: "Update - Version number (Pull Request)"
+#     condition: and(succeeded(), and(eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/master')))
+#     inputs:
+#       VersionVariable: "versionnumber"
+#       UpdateMinorVersion: false
+#       OnlyUpdateMinor: true
+#       DevOpsPat: "$(devops-pipeline-pat)"
